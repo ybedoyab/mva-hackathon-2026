@@ -1,0 +1,125 @@
+# Local genomic / clinical data
+data/
+raw/
+private/
+downloads/
+controlled_data/
+
+# Machine-local Track 1 configs (may contain private filesystem paths)
+configs/*.local.yaml
+
+# Sequencing and variant files
+*.fastq
+*.fastq.gz
+*.fq
+*.fq.gz
+*.bam
+*.bai
+*.sam
+*.cram
+*.crai
+*.ubam
+*.vcf
+*.vcf.gz
+*.vcf.bgz
+*.bcf
+*.tbi
+*.csi
+*.gvcf
+*.g.vcf
+*.g.vcf.gz
+
+# Common genomics intermediate files
+*.bed.gz
+*.ped
+*.fam
+*.fast5
+*.pod5
+*.bgen
+*.pgen
+*.pvar
+*.psam
+*.sra
+*.bigwig
+*.bw
+*.hic
+
+# Serialized objects that may contain patient-level data
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.zarr
+
+# Credentials and environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+token.json
+*token*
+*secret*
+id_rsa
+id_rsa.pub
+id_dsa
+id_dsa.pub
+id_ecdsa
+id_ecdsa.pub
+id_ed25519
+id_ed25519.pub
+.netrc
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+ENV/
+dist/
+build/
+*.egg-info/
+*.egg
+.eggs/
+.coverage
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+*.so
+
+# IDE / OS
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Temporary/output files
+tmp/
+temp/
+logs/
+*.log
+
+# Workflow work directories (may contain copies of inputs)
+.snakemake/
+.nextflow/
+.nextflow.log*
+cromwell-executions/
+work/

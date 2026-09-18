@@ -1,0 +1,66 @@
+# Example Track 1 configuration.
+# Copy to a local, untracked file (for example configs/track1.local.yaml)
+# and point paths at private data OUTSIDE this git repository.
+#
+# Paths below are empty placeholders. They are not real local paths and do not
+# reproduce official dataset filenames. Fill them in only after a local,
+# privacy-safe inventory (see scripts/inspect_track1_dataset.py).
+#
+# Public inventory (SageBio/mva-hackathon-2026-data) is single-proband:
+# one VCF + TBI, eight paired-end FASTQs (four lanes), one clinical DOCX.
+# No parental sequencing files are in the current public listing.
+#
+# Do not put secrets or identifying local paths in any committed file.
+
+project:
+  # Used for any stochastic steps once they are implemented.
+  random_seed: 2026
+
+data:
+  # Official submission coordinates must use GRCh38.
+  genome_build: GRCh38
+
+  # Local compressed VCF and its tabix index (absolute paths preferred).
+  proband_vcf:
+  proband_vcf_index:
+
+  # Local clinical phenotype document (DOCX). Do not commit it.
+  clinical_phenotype_file:
+
+  # Four official paired-end lanes. Leave empty until local files are present.
+  # Do not assume BAM/CRAM inputs; they are not in the current public listing.
+  fastq:
+    lane_1:
+      r1:
+      r2:
+    lane_2:
+      r1:
+      r2:
+    lane_3:
+      r1:
+      r2:
+    lane_4:
+      r1:
+      r2:
+
+  # Local GRCh38 FASTA used for alignment/normalization. Not provided in the
+  # challenge dataset listing; obtain from a public reference source and record
+  # its checksum outside git.
+  reference_fasta:
+
+outputs:
+  # Prefer an absolute directory outside this repository for pipeline runs.
+  directory:
+
+filters:
+  # Population allele-frequency ceiling. Unset until a threshold is chosen.
+  max_population_af:
+
+# Optional / future only. The public dataset listing has no parental files.
+# Uncomment locally if family data are later obtained through authorized means.
+#
+# optional_family_data:
+#   father_vcf:
+#   mother_vcf:
+#   father_bam:
+#   mother_bam:

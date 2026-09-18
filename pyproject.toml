@@ -1,0 +1,61 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mva-hackathon-2026"
+version = "0.1.0"
+description = "Workspace for the 2026 Rare Disease Real Kid MVA Hackathon (Track 1 foundation)."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "pyyaml>=6.0",
+    "typer>=0.12",
+    "rich>=13.0",
+    "huggingface_hub>=0.23",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.6",
+]
+
+[project.scripts]
+mva-track1 = "mva_track1.cli:app"
+
+[tool.setuptools]
+packages = ["mva_track1", "shared", "shared.utils"]
+
+[tool.setuptools.package-dir]
+mva_track1 = "track1/src/mva_track1"
+
+[tool.pytest.ini_options]
+testpaths = ["track1/tests"]
+pythonpath = ["track1/src"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+src = ["track1/src", "shared", "scripts", "track1/tests"]
+extend-exclude = [
+    ".venv",
+    "venv",
+    "data",
+    "raw",
+    "private",
+    "downloads",
+    "controlled_data",
+]
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["mva_track1", "shared"]
