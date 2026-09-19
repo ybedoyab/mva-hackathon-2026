@@ -59,3 +59,40 @@ def preflight(
     render_preflight(report, console)
     if report.failed:
         raise typer.Exit(code=1)
+
+
+@app.command("profile-vcf")
+def profile_vcf_cmd(
+    data_dir: Path | None = typer.Option(
+        None,
+        "--data-dir",
+        exists=False,
+        file_okay=False,
+        dir_okay=True,
+        help="Local dataset directory containing the official VCF (outside git).",
+    ),
+    vcf: Path | None = typer.Option(
+        None,
+        "--vcf",
+        exists=False,
+        file_okay=True,
+        dir_okay=False,
+        help="Optional explicit local VCF path. Filename is never printed.",
+    ),
+    output_dir: Path | None = typer.Option(
+        None,
+        "--output-dir",
+        help="Directory for aggregate JSON/Markdown (default: local work/vcf_profile).",
+    ),
+) -> None:
+    """Stream a local VCF and print aggregate QC only. Never prints variant records."""
+    from mva_track1.vcf_profile import main as profile_main
+
+    argv: list[str] = []
+    if data_dir is not None:
+        argv.extend(["--data-dir", str(data_dir)])
+    if vcf is not None:
+        argv.extend(["--vcf", str(vcf)])
+    if output_dir is not None:
+        argv.extend(["--output-dir", str(output_dir)])
+    raise typer.Exit(profile_main(argv))
