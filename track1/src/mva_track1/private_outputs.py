@@ -7,6 +7,8 @@ from pathlib import Path
 
 DEFAULT_WORK_ROOT = Path("D:/mva-hackathon-2026-work")
 DEFAULT_DATA_ROOT = Path("D:/mva-hackathon-2026-data")
+DEFAULT_REFERENCE_ROOT = Path("D:/mva-reference")
+DEFAULT_VEP_DATA_ROOT = Path("D:/mva-vep-data")
 
 
 def work_root() -> Path:
@@ -26,6 +28,28 @@ def private_root() -> Path:
 
 def vcf_profile_root() -> Path:
     return work_root() / "vcf_profile"
+
+
+def annotation_root() -> Path:
+    return work_root() / "annotation"
+
+
+def normalized_root() -> Path:
+    return work_root() / "normalized"
+
+
+def logs_root() -> Path:
+    return work_root() / "logs"
+
+
+def reference_root() -> Path:
+    raw = os.environ.get("MVA_REFERENCE_DIR", "").strip()
+    return Path(raw) if raw else DEFAULT_REFERENCE_ROOT
+
+
+def vep_data_root() -> Path:
+    raw = os.environ.get("MVA_VEP_DATA_DIR", "").strip()
+    return Path(raw) if raw else DEFAULT_VEP_DATA_ROOT
 
 
 def future_private_table_path(stem: str) -> Path:
